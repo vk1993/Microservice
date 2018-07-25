@@ -1,0 +1,8 @@
+---
+applications:
+- name: spring-boot-microservice-vk
+  path: target/xyxyx.jar
+  domain: tellvk.io
+  memory : 512m
+  instances: 1
+

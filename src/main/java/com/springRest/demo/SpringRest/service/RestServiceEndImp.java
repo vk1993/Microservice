@@ -42,15 +42,22 @@ public class RestServiceEndImp implements RestServiceEnd {
 			}
 			reversedString = reversedString + reverseWord + " ";
 		}
-		return reversedString;
+		return reversedString.trim();
 	}
 
 	@Override
 	public String getTriangle(int a, int b, int c) {
-		    if (a == b && b == c) return "Equilateral";
-		    if (a >= b+c || c >= b+a || b >= a+c) return "Invalid";
-		    if (b==c || a==b || c==a) return "Isosceles";
-		    return "scalene";
+//		    if (a == b && b == c) return "Equilateral";
+////		    if (a >= b+c || c >= b+a || b >= a+c) return "Invalid";
+////		    if (b==c || a==b || c==a) return "Isosceles";
+////		    return "scalene";
+		if((a + b > c)) {
+			if ((a == b) && (b == c)) return "Equilateral";
+			if ((a == b) & (b != c) || (b == c) & (c != a)) return "Isosceles";
+			if ((a != b) & (b != c)) return "Scalene";
+		}
+			return "Invalid";
+
 	}
 
 	@Override

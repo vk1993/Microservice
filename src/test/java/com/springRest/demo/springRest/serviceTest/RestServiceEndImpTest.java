@@ -7,6 +7,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 import org.hamcrest.collection.IsMapContaining;
+import org.junit.After;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -29,7 +30,7 @@ public class RestServiceEndImpTest {
 	@Test
 	public void testGetReverse() throws Exception {
 		String test = "india is";
-		assertEquals("aidni si ", restServiceEndImp.getReverse(test));
+		assertEquals("aidni si", restServiceEndImp.getReverse(test));
 	}
 
 	@Test
@@ -53,5 +54,8 @@ public class RestServiceEndImpTest {
 				IsMapContaining.hasEntry("Array", new Integer[] { 1, 2, 3, 4, 5, 6, 55 }));
 
 	}
-
+	@After
+	public void destroy() throws Exception {
+		restServiceEndImp = null ;
+	}
 }

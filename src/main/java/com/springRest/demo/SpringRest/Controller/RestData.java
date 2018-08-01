@@ -26,9 +26,9 @@ public class RestData {
 	@Autowired
 	private RestServiceEnd restServiceEnd;
 
+
 	@GetMapping(value = "/Fibonacci", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
-	@ResponseStatus(value = HttpStatus.OK)
-	public int getNthFibonacci(@PathParam("n") Long n, HttpServletResponse response) throws BadRequest {
+	public int getNthFibonacci(@PathParam("n") Long n, HttpServletResponse response) throws Exception {
 		if (n instanceof Long && n > 0) {
 			response.setHeader("pragma", "no-cache");
 			response.setHeader("cache-Control", "no-cache");
@@ -37,13 +37,13 @@ public class RestData {
 
 			return restServiceEnd.getNthFebbonic(n);
 		} else {
-			throw new BadRequest("enter valid url");
+			throw new Exception("Enter Vaid URL");
 		}
 	}
 
 	@GetMapping(value = "/ReverseWords")
 	@ResponseStatus(value = HttpStatus.OK)
-	public String getReverse(@PathParam("sentence") String sentence, HttpServletResponse response) throws BadRequest {
+	public String getReverse(@PathParam("sentence") String sentence, HttpServletResponse response) throws Exception {
 		if (sentence instanceof String && sentence != "") {
 			response.setHeader("pragma", "no-cache");
 			response.setHeader("cache-Control", "no-cache");
@@ -52,17 +52,16 @@ public class RestData {
 
 			return restServiceEnd.getReverse(sentence);
 		} else {
-			throw new BadRequest("Bad Request");
+			throw new Exception("Enter Vaid URL");
 		}
 	}
 
-	@GetMapping(value = "/TriangleType",
-			produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	@GetMapping(value = "/TriangleType")
 	@ResponseStatus(value = HttpStatus.OK)
 	public String getTriangle(@PathParam("a") int a, @PathParam("b") int b, @PathParam("c") int c,
-			HttpServletResponse response) throws BadRequest {
+			HttpServletResponse response) throws Exception {
 		if (a <= 0 || b <= 0 || c <= 0) {
-			throw new BadRequest("enter valied url");
+			throw new Exception("Enter Vaid URL");
 		}
 		response.setHeader("pragma", "no-cache");
 		response.setHeader("cache-Control", "no-cache");
@@ -76,7 +75,7 @@ public class RestData {
 			consumes = MediaType.APPLICATION_JSON_VALUE)
 	@ResponseStatus(value = HttpStatus.OK)
 	public Map<String, Integer[]> makeOneArray(@RequestBody Map<String, Integer[]> array, HttpServletResponse response)
-			throws BadRequest {
+			throws Exception {
 
 		response.setHeader("pragma", "no-cache");
 		response.setHeader("Cache-Control", "no-cache");

@@ -1,14 +1,10 @@
 package com.springRest.demo.springRest.ControllerTest;
 
-import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
-import static org.hamcrest.Matchers.hasSize;
-import static org.junit.Assert.*;
+
 import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.post;
-import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 import org.junit.Before;
@@ -16,21 +12,19 @@ import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mockito.InjectMocks;
 import org.mockito.MockitoAnnotations;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+
+
 import org.springframework.boot.test.mock.mockito.MockBean;
-import org.springframework.http.MediaType;
+
 import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
-import org.springframework.test.context.junit4.SpringRunner;
+
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.MvcResult;
+
 import org.springframework.test.web.servlet.setup.MockMvcBuilders;
 
 import com.springRest.demo.SpringRest.Controller.RestData;
 import com.springRest.demo.SpringRest.service.RestServiceEnd;
 
-import java.util.HashMap;
-import java.util.Map;
 
 @RunWith(SpringJUnit4ClassRunner.class)
 public class RestDataTest {
@@ -60,11 +54,6 @@ public class RestDataTest {
 				.andExpect(header().string("cache-Control", "no-cache"))
 				.andExpect(header().string("expires", "-1"))
 				.andExpect(content().json(AbstractRestControllerTest.asJsonString(55)));
-
-//		mvc.perform(get("/api/Fibonacci?n=ff")).andExpect(status().isBadRequest())
-//				.andExpect(content().contentType("application/json;charset=UTF-8"))
-//				.andExpect(header().string("pragma", "no-cache"))
-//				.andExpect(content().json(AbstractRestControllerTest.asJsonString(55)));
 
 		verify(restServiceEnd,times(1)).getNthFebbonic(10);
 	}
